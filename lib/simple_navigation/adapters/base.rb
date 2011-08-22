@@ -24,6 +24,10 @@ module SimpleNavigation
       # Used to determine if an item should be autohighlighted.
       def current_page?(url); end
       
+      # Returns a URL as a string representation for the specified object.
+      # Used to translate objects to URL strings for autohighlight matching.
+      def url_for(object); end
+
       # Returns a link with the specified name, url and options.
       # Used for rendering.
       def link_to(name, url, options={}); end

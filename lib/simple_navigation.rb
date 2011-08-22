@@ -31,7 +31,7 @@ module SimpleNavigation
   class << self
     extend Forwardable
     
-    def_delegators :adapter, :request, :request_uri, :request_path, :context_for_eval, :current_page?
+    def_delegators :adapter, :request, :request_uri, :request_path, :context_for_eval, :current_page?, :url_for
     def_delegators :adapter_class, :register
 
     # Sets the root path and current environment as specified. Also sets the default config_file_path.

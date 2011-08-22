@@ -194,6 +194,24 @@ describe SimpleNavigation::Adapters::Rails do
     end
   end
   
+  describe 'url_for' do
+    context 'template is set' do
+      before(:each) do
+        @adapter.stub!(:template => @template)
+      end
+      it "should delegate the call to the template" do
+        @template.should_receive(:url_for).with(:object)
+        @adapter.url_for(:object)
+      end
+    end
+    context 'template is not set' do
+      before(:each) do
+        @adapter.stub!(:template => nil)
+      end
+      it {@adapter.url_for(:object).should be_nil}
+    end
+  end
+  
   describe 'link_to' do
     context 'template is set' do
       before(:each) do

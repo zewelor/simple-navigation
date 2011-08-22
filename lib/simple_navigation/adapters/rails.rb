@@ -38,6 +38,10 @@ module SimpleNavigation
         template.current_page?(url) if template
       end
       
+      def url_for(object)
+        template.url_for(object) if template
+      end
+
       def link_to(name, url, options={})
         template.link_to(html_safe(name), url, options) if template
       end

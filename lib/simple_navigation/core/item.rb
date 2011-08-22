@@ -15,7 +15,14 @@ module SimpleNavigation
       @key = key
       @method = options.delete(:method)
       @name = name
-      @url = url.instance_of?(Proc) ? url.call : url
+      @url = case url
+             when Proc
+               url.call
+             when String
+               url
+             else
+               SimpleNavigation.url_for(url)
+             end
       @highlights_on = options.delete(:highlights_on)
       @html_options = options
       if sub_nav_block || items

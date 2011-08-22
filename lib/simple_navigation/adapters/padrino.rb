@@ -6,6 +6,10 @@ module SimpleNavigation
         SimpleNavigation.set_env(PADRINO_ROOT, PADRINO_ENV)
         ::Padrino::Application.send(:helpers, SimpleNavigation::Helpers)
       end
+
+      def url_for(object)
+        context.url_for object
+      end
             
       def link_to(name, url, options={})
         context.link_to name, url, options

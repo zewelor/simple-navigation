@@ -42,6 +42,10 @@ module SimpleNavigation
         end
       end
 
+      def url_for(object)
+        object.to_s
+      end
+
       def link_to(name, url, options={})
         "<a href='#{url}' #{to_attributes(options)}>#{name}</a>"
       end

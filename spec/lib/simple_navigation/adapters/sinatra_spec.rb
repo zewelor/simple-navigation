@@ -65,6 +65,12 @@ describe SimpleNavigation::Adapters::Sinatra do
     end
   end
 
+  describe 'url_for' do
+    it "should return a string" do
+      @adapter.url_for(:object).should == 'object'
+    end
+  end
+
   describe 'link_to' do
     it "should return a link" do
       @adapter.link_to('link', 'url', :class => 'clazz', :id => 'id').should == "<a href='url' class='clazz' id='id'>link</a>"

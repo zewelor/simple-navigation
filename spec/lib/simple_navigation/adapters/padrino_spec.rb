@@ -12,6 +12,13 @@ describe SimpleNavigation::Adapters::Padrino do
     @adapter = create_adapter
   end
   
+  describe 'url_for' do
+    it "should delegate to context" do
+      @context.should_receive(:url_for).with(:object)
+      @adapter.url_for(:object)
+    end
+  end
+
   describe 'link_to' do
     it "should delegate to context" do
       @context.should_receive(:link_to).with('name', 'url', :my_option => true)

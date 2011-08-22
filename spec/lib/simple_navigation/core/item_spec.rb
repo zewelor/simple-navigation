@@ -5,7 +5,10 @@ describe SimpleNavigation::Item do
   before(:each) do
     @item_container = stub(:item_container, :level => 1).as_null_object
     @item = SimpleNavigation::Item.new(@item_container, :my_key, 'name', 'url', {})
-    @adapter = stub(:adapter)
+    @adapter = mock(:adapter)
+    @adapter.stub!(:url_for) { |o| o.as_url }
+    @object = mock(:object)
+    @object.stub!(:as_url) { 'my_url' }
     SimpleNavigation.stub!(:adapter => @adapter)
   end
 
@@ -111,6 +114,12 @@ describe SimpleNavigation::Item do
       context 'url is a proc' do
         before(:each) do
           @item = SimpleNavigation::Item.new(@item_container, :my_key, 'name', Proc.new {"my_" + "url"}, {})
+        end
+        it {@item.url.should == 'my_url'}
+      end
+      context 'url is an object' do
+        before(:each) do
+          @item = SimpleNavigation::Item.new(@item_container, :my_key, 'name', @object, {})
         end
         it {@item.url.should == 'my_url'}
       end
