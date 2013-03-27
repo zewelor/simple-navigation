@@ -12,7 +12,7 @@ module SimpleNavigation
       end
       
       def content_tag(type, content, options={})
-        context.content_tag type, content, options
+        context.content_tag type, content.html_safe, options
       end
       
     end
